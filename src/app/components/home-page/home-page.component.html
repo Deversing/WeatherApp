@@ -1,0 +1,41 @@
+
+<div class="w-screen h-screen flex flex-row-reverse gap-2 items-center justify-center bg-[url(assets/bg.jpg)] bg-cover">
+  <div class="bg-white/10 backdrop-blur-md border border-white/10 w-1/2 h-5/6 rounded-xl p-3.5 flex items-center flex-col">
+    <div class="">
+      <div (click)="showLocations()" class="absolute left-3 flex gap-2 items-center cursor-pointer">
+        <fa-icon *ngIf="!locations" [icon]="icons.show"></fa-icon>
+        <fa-icon *ngIf="locations" [icon]="icons.hide"></fa-icon>
+        <span class="text-xs">Locations</span>
+      </div>
+      <div (click)="currentWeather(true)"  class="absolute right-3 flex gap-2 items-center cursor-pointer">
+        <fa-icon [icon]="icons.refresh" [ngClass]="{'animate-spin': refreshing}"></fa-icon>
+      </div>
+      <h3 class="font-bold text-center">
+        <fa-icon [icon]="icons.location"></fa-icon> {{ weather.location }}
+      </h3>
+      <p class="font-thin text-sm">{{ dateNow | uppercase }}</p>
+    </div>
+    <div class="relative m-10">
+      <span class="font-black text-9xl font-nunito">{{ weather.temp }}°</span>
+      <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" width="150" class="absolute -bottom-1/4 -right-7">
+      <p class="font-medium text-base text-start ml-10">{{ weather.description | uppercase }}</p>
+    </div>
+    <div class="flex gap-7 justify-center bg-white px-10 py-2 w-2/4 rounded-full">
+      <app-parameter [parameter]="weather.clouds"></app-parameter>
+      <app-parameter [parameter]="weather.humidity"></app-parameter>
+      <app-parameter [parameter]="weather.speedAir"></app-parameter>
+    </div>
+    <div class="forecast pt-5 w-full h-full flex gap-3 justify-center">
+      <app-card-forecast *ngFor="let item of forecast" [forecast]="item"></app-card-forecast>
+    </div>
+  </div>
+  <div class="h-5/6">
+    <app-side-bar [hideCountries]="locations"></app-side-bar>
+  </div>
+  <div class="absolute top-0 right-0 p-4 flex flex-col items-center gap-3 bg-slate-700 rounded-md m-1">
+      <img src="assets/logo.png" class="w-10">
+      <img src="assets/logo-ang.png" class="w-10">
+      <img src="assets/me.jpeg" alt="" width="" class="w-10 h-15 rounded-lg">
+      <p class="font-nunito text-xs text-white">By Emilio Andere</p>
+  </div>
+</div>

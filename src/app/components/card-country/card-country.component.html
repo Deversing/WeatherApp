@@ -1,0 +1,8 @@
+<div class="flex bg-white rounded-lg">
+  <img src="https://openweathermap.org/img/wn/{{ weatherCountry.weather[0].icon }}@2x.png">
+  <div class="w-full flex flex-col items-center m-3">
+    <p class="text-center font-semibold">{{ weatherCountry.name }}</p>
+    <span class="text-5xl font-bold">{{ weatherCountry.main.temp | notDecimals }}°</span>
+  </div>
+  <fa-icon [icon]="iconDelete" class="p-1 cursor-pointer hover:text-red-500" (click)="trashCountry()"></fa-icon>
+</div>

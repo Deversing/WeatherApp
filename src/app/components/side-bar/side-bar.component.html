@@ -1,0 +1,17 @@
+<div *ngIf="hideCountries" class="bg-slate-500 w-80 h-full rounded-lg p-2 overflow-hidden">
+  <div class="flex justify-between text-white">
+    <div (click)="addLocation()" class="flex gap-1 items-center border border-white px-3 rounded-full">
+      <fa-icon [icon]="icons.add"></fa-icon>
+      <span class="font-light text-sm"> Add Location</span>
+    </div>
+  </div>
+  <div>
+    <select [(ngModel)]="selectedCountry" name="contries" id="countries" class="w-full my-1 border-none rounded-lg p-1 text-center outline-none">
+      <option value="">Selecciona un Pais</option>
+      <option *ngFor="let country of countries" [value]="country.country_name+','+country.country_short_name">{{ country.country_name }}</option>
+    </select>
+  </div>
+  <div class="py-2 flex flex-col gap-2 overflow-y-auto h-[87%] pe-1">
+    <app-card-country *ngFor="let item of weatherCountries" [weatherCountry]="item" (updateCountries)="update($event)"></app-card-country>
+  </div>
+</div>
